@@ -1,10 +1,16 @@
-// Add class on keydown
 const keys = document.querySelectorAll('.key');
+// Add class on keydown
 document.addEventListener('keydown', addPlayingClass)
-// keys.forEach(key => key.addEventListener('click', addPlayingClass))
-
 function addPlayingClass(e) {
-    alert(e.keyCode);
+    document.querySelector(`.key[data-key="${e.keyCode}"]`).classList.add('playing');
 }
 // Play audio clip
+document.addEventListener('keydown', playDrumClip)
+function playDrumClip(e) {
+    document.querySelector(`audio[data-key="${e.keyCode}"]`).play();
+}
 // Remove class on keyup
+document.addEventListener('keyup', removePlayingClass);
+function removePlayingClass(e) {
+    document.querySelector(`.key[data-key="${e.keyCode}"]`).classList.remove('playing');
+}
