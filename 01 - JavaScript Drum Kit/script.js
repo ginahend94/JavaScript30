@@ -7,7 +7,10 @@ function addPlayingClass(e) {
 // Play audio clip
 document.addEventListener('keydown', playDrumClip)
 function playDrumClip(e) {
-    document.querySelector(`audio[data-key="${e.keyCode}"]`).play();
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+    audio.currentTime = 0;
+    audio.play();
 }
 // Remove class on keyup
 document.addEventListener('keyup', removePlayingClass);
